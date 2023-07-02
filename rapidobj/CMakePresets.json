@@ -1,0 +1,159 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base-config",
+      "hidden": true,
+      "cacheVariables": {
+        "RAPIDOBJ_BuildExamples": true,
+        "RAPIDOBJ_BuildTests": true,
+        "RAPIDOBJ_BuildTools": true
+      }
+    },
+    {
+      "name": "arch-x64",
+      "hidden": true,
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "arch-arm64",
+      "hidden": true,
+      "architecture": {
+        "value": "ARM64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "os-linux",
+      "hidden": true,
+      "inherits": "base-config",
+      "generator": "Unix Makefiles",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "Linux" ]
+        }
+      }
+    },
+    {
+      "name": "os-windows",
+      "hidden": true,
+      "inherits": "base-config",
+      "generator": "Ninja",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "Windows" ]
+        }
+      }
+    },
+    {
+      "name": "os-mac",
+      "hidden": true,
+      "inherits": "base-config",
+      "generator": "Unix Makefiles",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "macOS" ]
+        }
+      }
+    },
+    {
+      "name": "compiler-clang",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_CXX_FLAGS": "-Werror -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors"
+      }
+    },
+    {
+      "name": "compiler-gcc",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_CXX_FLAGS": "-Werror -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors"
+      }
+    },
+    {
+      "name": "compiler-msvc",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_CXX_FLAGS": "/EHsc /W4 /permissive-"
+      }
+    },
+    {
+      "name": "type-debug",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "type-release",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "x64-linux-clang-release",
+      "inherits": [ "arch-x64", "os-linux", "compiler-clang", "type-release" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-linux-clang-debug",
+      "inherits": [ "arch-x64", "os-linux", "compiler-clang", "type-debug" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-linux-gcc-release",
+      "inherits": [ "arch-x64", "os-linux", "compiler-gcc", "type-release" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-linux-gcc-debug",
+      "inherits": [ "arch-x64", "os-linux", "compiler-gcc", "type-debug" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-windows-msvc-release",
+      "inherits": [ "arch-x64", "os-windows", "compiler-msvc", "type-release" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-windows-msvc-debug",
+      "inherits": [ "arch-x64", "os-windows", "compiler-msvc", "type-debug" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-windows-clang-release",
+      "inherits": [ "arch-x64", "os-windows", "compiler-clang", "type-release" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "x64-windows-clang-debug",
+      "inherits": [ "arch-x64", "os-windows", "compiler-clang", "type-debug" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "arm64-mac-clang-release",
+      "inherits": [ "arch-arm64", "os-mac", "compiler-clang", "type-release" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    },
+    {
+      "name": "arm64-mac-clang-debug",
+      "inherits": [ "arch-arm64", "os-mac", "compiler-clang", "type-debug" ],
+      "binaryDir": "${sourceDir}/build/${presetName}"
+    }
+  ]
+}
