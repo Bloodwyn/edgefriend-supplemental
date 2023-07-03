@@ -1,6 +1,0 @@
-[submodule "rapidobj"]
-	path = rapidobj
-	url = git@github.com:Bloodwyn/rapidobj.git
-[submodule "glm"]
-	path = glm
-	url = https://github.com/g-truc/glm.git
